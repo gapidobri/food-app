@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/order/models/restaurant.dart';
@@ -13,45 +15,58 @@ class RestaurantCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const restaurantId = 'restaurantId';
-
     return Card(
-      child: InkWell(
-        onTap: () => context.push('/restaurants/$restaurantId'),
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          height: 200,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.0),
-            image: DecorationImage(
-              image: NetworkImage(restaurant.image),
-              fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: () => context.push('/restaurants/${restaurant.id}'),
+        child: Hero(
+          tag: restaurant.id,
+          child: Container(
+            clipBehavior: Clip.antiAlias,
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              image: DecorationImage(
+                image: NetworkImage(restaurant.image),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16.0),
-                    topRight: Radius.circular(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16.0),
+                      topRight: Radius.circular(16.0),
+                    ),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        restaurant.name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      const Spacer(),
+                      Transform.rotate(
+                        angle: 2 * pi * Random().nextDouble(),
+                        child: const Icon(Icons.navigation),
+                      ),
+                      const SizedBox(width: 4.0),
+                      const Text('3km'),
+                    ],
                   ),
                 ),
-                child: Row(
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(restaurant.name),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

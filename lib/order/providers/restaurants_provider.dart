@@ -6,17 +6,20 @@ final restaurantsProvider = FutureProvider<List<Restaurant>>((ref) async {
     Restaurant(
       id: 'mcdonalds',
       name: "McDonald's",
-      image: 'https://images.unsplash.com/photo-1602192103201-d763907bc41b',
+      image:
+          'https://images.unsplash.com/photo-1602192103201-d763907bc41b?w=300',
     ),
     Restaurant(
-      id: 'beerpub',
-      name: "Beer Pub",
-      image: 'https://images.unsplash.com/photo-1602192103201-d763907bc41b',
+      id: 'balkanexpress',
+      name: "Balkan Express",
+      image:
+          'https://images.unsplash.com/photo-1602192103201-d763907bc41b?w=300',
     ),
     Restaurant(
       id: 'chutys',
       name: "Chuty's",
-      image: 'https://images.unsplash.com/photo-1602192103201-d763907bc41b',
+      image:
+          'https://images.unsplash.com/photo-1602192103201-d763907bc41b?w=300',
     ),
   ];
 });
