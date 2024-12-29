@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_app/order/models/meal.dart';
 
 class MealCard extends ConsumerWidget {
   const MealCard({
     super.key,
     required this.meal,
+    this.selected = false,
+    this.onTap,
   });
 
   final Meal meal;
+  final bool selected;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        height: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.0),
-          image: DecorationImage(
-            image: NetworkImage(meal.image),
-            fit: BoxFit.cover,
-          ),
-        ),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(meal.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 8.0,
               ),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16.0),
-                  topRight: Radius.circular(16.0),
-                ),
-              ),
+              color: selected ? Colors.amber.shade200 : Colors.white,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,15 +51,15 @@ class MealCard extends ConsumerWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text('${meal.price.toStringAsFixed(2)}€'),
+                      Text('${meal.price.toStringAsFixed(2)} €'),
                     ],
                   ),
                   const Spacer(),
-                  const Icon(Icons.remove),
-                  const SizedBox(width: 4.0),
-                  const Text('1'),
-                  const SizedBox(width: 4.0),
-                  const Icon(Icons.add),
+                  if (selected)
+                    const Icon(
+                      FontAwesomeIcons.check,
+                      size: 16.0,
+                    ),
                 ],
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/map/map_screen.dart';
+import 'package:food_app/order/screens/cart_screen.dart';
 import 'package:food_app/order/screens/restaurant_screen.dart';
 import 'package:food_app/order/screens/restaurant_list_screen.dart';
 import 'package:food_app/profile/profile_screen.dart';
@@ -9,6 +10,10 @@ import 'package:go_router/go_router.dart';
 final router = GoRouter(
   initialLocation: '/restaurants',
   routes: [
+    GoRoute(
+      path: '/cart',
+      builder: (context, state) => const CartScreen(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) => Scaffold(
         body: navigationShell,

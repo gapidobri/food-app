@@ -6,22 +6,23 @@ part 'cart_provider.g.dart';
 @riverpod
 class Cart extends _$Cart {
   @override
-  Map<Meal, int> build() {
-    return {};
+  List<Meal> build() {
+    return [];
+  }
+
+  void toggleMeal(Meal meal) {
+    if (state.contains(meal)) {
+      removeMeal(meal);
+    } else {
+      addMeal(meal);
+    }
   }
 
   void addMeal(Meal meal) {
-    state = {...state, meal: state[meal] ?? 0 + 1};
+    state = [...state, meal];
   }
 
   void removeMeal(Meal meal) {
-    if (!state.containsKey(meal)) return;
-
-    if (state[meal] == 1) {
-      state.remove(meal);
-      state = {...state};
-    } else {
-      state = {...state, meal: (state[meal] ?? 0) - 1};
-    }
+    state = state.where((m) => m.id != meal.id).toList();
   }
 }

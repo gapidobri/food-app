@@ -21,8 +21,8 @@ class RestaurantListScreen extends ConsumerWidget {
           ),
           separatorBuilder: (context, index) => const SizedBox(height: 8.0),
         ),
-      AsyncError() => const Center(
-          child: Text('Failed to load restaurants'),
+      AsyncError(error: final error) => Center(
+          child: Text('Failed to load restaurants: $error'),
         ),
       _ => const Center(
           child: CircularProgressIndicator(),

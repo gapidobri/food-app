@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class BottomNavigation extends ConsumerWidget {
@@ -16,9 +17,18 @@ class BottomNavigation extends ConsumerWidget {
       onTap: navigationShell.goBranch,
       currentIndex: navigationShell.currentIndex,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.fastfood), label: 'Order'),
-        BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.burger),
+          label: 'Order',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.solidMap),
+          label: 'Map',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.solidUser),
+          label: 'Profile',
+        ),
       ],
     );
   }

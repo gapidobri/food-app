@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_app/order/models/restaurant.dart';
 import 'package:go_router/go_router.dart';
 
@@ -58,7 +59,7 @@ class RestaurantCard extends ConsumerWidget {
                       const Spacer(),
                       Transform.rotate(
                         angle: 2 * pi * Random().nextDouble(),
-                        child: const Icon(Icons.navigation),
+                        child: const Icon(FontAwesomeIcons.locationArrow),
                       ),
                       const SizedBox(width: 4.0),
                       const Text('3km'),
