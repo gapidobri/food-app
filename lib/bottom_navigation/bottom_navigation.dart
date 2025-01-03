@@ -14,16 +14,22 @@ class BottomNavigation extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BottomNavigationBar(
+      fixedColor: Theme.of(context).primaryColor,
+      unselectedItemColor: Colors.grey.shade600,
       onTap: navigationShell.goBranch,
       currentIndex: navigationShell.currentIndex,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.burger),
-          label: 'Order',
+          label: 'Restaurants',
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.solidMap),
           label: 'Map',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.cartShopping),
+          label: 'Orders',
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.solidUser),

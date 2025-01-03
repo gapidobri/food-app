@@ -8,6 +8,6 @@ class Config {
 
 final configProvider = Provider<Config>(
   (ref) => const Config(
-    apiUrl: 'http://localhost:8090',
+    apiUrl: 'https://food-app.gapi.me',
   ),
 );
