@@ -9,7 +9,7 @@ final restaurantsProvider = FutureProvider<List<Restaurant>>((ref) async {
   final restaurants =
       await ref.read(restaurantRepositoryProvider).getRestaurants();
 
-  final location = ref.watch(locationProvider);
+  final location = ref.read(locationProvider);
   if (location is AsyncData<LatLng>) {
     final mapMath = FlutterMapMath();
     restaurants.sort(
