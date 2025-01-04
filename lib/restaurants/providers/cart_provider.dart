@@ -1,7 +1,8 @@
 import 'package:food_app/auth/providers/auth_provider.dart';
+import 'package:food_app/orders/models/create_order.dart';
+import 'package:food_app/orders/providers/orders_provider.dart';
 import 'package:food_app/restaurants/models/meal.dart';
-import 'package:food_app/restaurants/models/order.dart';
-import 'package:food_app/restaurants/repositories/order_repository.dart';
+import 'package:food_app/orders/repositories/order_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'cart_provider.g.dart';
@@ -30,6 +31,8 @@ class Cart extends _$Cart {
   }
 
   Future<void> order() async {
+    if (state.isEmpty) return;
+
     final user = ref.read(authProvider);
     if (user == null) return;
 
@@ -38,11 +41,14 @@ class Cart extends _$Cart {
     final mealIds = state.map((meal) => meal.id).toList();
 
     await orderRepo.createOrder(
-      Order(
+      CreateOrder(
         userId: user.id,
         mealIds: mealIds,
+        restaurantId: state.first.restaurantId,
       ),
     );
+
+    ref.invalidate(ordersProvider);
 
     state = [];
   }

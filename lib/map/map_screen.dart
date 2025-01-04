@@ -31,6 +31,12 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     alignPositionStreamController = StreamController<double?>();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    alignPositionStreamController.close();
+  }
+
   void alignPosition() {
     setState(
       () => alignPositionOnUpdate = AlignOnUpdate.always,

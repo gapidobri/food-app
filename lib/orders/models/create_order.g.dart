@@ -1,18 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'order.dart';
+part of 'create_order.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Order _$OrderFromJson(Map<String, dynamic> json) => Order(
+CreateOrder _$CreateOrderFromJson(Map<String, dynamic> json) => CreateOrder(
       userId: json['user'] as String,
       mealIds:
           (json['meals'] as List<dynamic>).map((e) => e as String).toList(),
+      restaurantId: json['restaurant'] as String,
     );
 
-Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
+Map<String, dynamic> _$CreateOrderToJson(CreateOrder instance) =>
+    <String, dynamic>{
       'user': instance.userId,
       'meals': instance.mealIds,
+      'restaurant': instance.restaurantId,
     };

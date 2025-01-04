@@ -4,7 +4,7 @@ import 'package:food_app/auth/providers/auth_provider.dart';
 import 'package:food_app/auth/screens/login_screen.dart';
 import 'package:food_app/auth/screens/register_screen.dart';
 import 'package:food_app/map/map_screen.dart';
-import 'package:food_app/orders/orders_screen.dart';
+import 'package:food_app/orders/screens/orders_screen.dart';
 import 'package:food_app/profile/profile_screen.dart';
 import 'package:food_app/bottom_navigation/bottom_navigation.dart';
 import 'package:food_app/restaurants/screens/cart_screen.dart';
@@ -12,7 +12,7 @@ import 'package:food_app/restaurants/screens/restaurant_list_screen.dart';
 import 'package:food_app/restaurants/screens/restaurant_screen.dart';
 import 'package:go_router/go_router.dart';
 
-GoRouter router(WidgetRef ref) {
+final routesProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/restaurants',
     routes: [
@@ -87,4 +87,4 @@ GoRouter router(WidgetRef ref) {
       ),
     ],
   );
-}
+});

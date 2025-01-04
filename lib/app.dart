@@ -14,7 +14,7 @@ class App extends ConsumerWidget {
     }
 
     return MaterialApp.router(
-      routerConfig: router(ref),
+      routerConfig: ref.watch(routesProvider),
     );
   }
 }
