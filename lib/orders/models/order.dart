@@ -1,11 +1,12 @@
 import 'package:food_app/restaurants/models/meal.dart';
 import 'package:food_app/restaurants/models/restaurant.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'order.g.dart';
 
 @JsonSerializable()
-class Order {
+class Order extends HiveObject {
   final String id;
   @JsonKey(name: 'user')
   final String userId;
@@ -14,7 +15,7 @@ class Order {
   final DateTime created;
   final DateTime updated;
 
-  const Order({
+  Order({
     required this.id,
     required this.userId,
     required this.meals,

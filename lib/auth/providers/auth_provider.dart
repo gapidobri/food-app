@@ -1,4 +1,4 @@
-import 'package:food_app/api/api.dart';
+import 'package:food_app/api/pocket_base_provider.dart';
 import 'package:food_app/auth/models/user.dart';
 import 'package:food_app/auth/repositories/user_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,7 +18,7 @@ class Auth extends _$Auth {
     return null;
   }
 
-  void login(String email, String password) async {
+  Future<void> login(String email, String password) async {
     final userRepo = ref.read(userRepositoryProvider);
     final user = await userRepo.login(email, password);
     state = user;

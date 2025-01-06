@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_app/api/api.dart';
+import 'package:food_app/api/pocket_base_provider.dart';
 import 'package:food_app/routes.dart';
 
 class App extends ConsumerWidget {

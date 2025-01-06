@@ -10,23 +10,27 @@ class RestaurantListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final restaurants = ref.watch(restaurantsProvider);
 
-    return switch (restaurants) {
-      AsyncData(value: final restaurants) => ListView.separated(
-          itemCount: restaurants.length,
-          itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: RestaurantCard(
-              restaurant: restaurants[index],
+    return RefreshIndicator(
+      edgeOffset: 16.0,
+      onRefresh: () => ref.refresh(restaurantsProvider.future),
+      child: switch (restaurants) {
+        AsyncData(value: final restaurants) => ListView.separated(
+            itemCount: restaurants.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: RestaurantCard(
+                restaurant: restaurants[index],
+              ),
             ),
+            separatorBuilder: (context, index) => const SizedBox(height: 8.0),
           ),
-          separatorBuilder: (context, index) => const SizedBox(height: 8.0),
-        ),
-      AsyncError(error: final error) => Center(
-          child: Text('Failed to load restaurants: $error'),
-        ),
-      _ => const Center(
-          child: CircularProgressIndicator(),
-        ),
-    };
+        AsyncError(error: final error) => Center(
+            child: Text('Failed to load restaurants: $error'),
+          ),
+        _ => const Center(
+            child: CircularProgressIndicator(),
+          ),
+      },
+    );
   }
 }

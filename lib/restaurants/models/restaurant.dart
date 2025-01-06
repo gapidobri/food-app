@@ -1,9 +1,10 @@
+import 'package:hive_ce/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'restaurant.g.dart';
 
 @JsonSerializable()
-class Restaurant {
+class Restaurant extends HiveObject {
   final String id;
   final String name;
   final String image;
@@ -12,7 +13,7 @@ class Restaurant {
   @JsonKey(name: "pin_icon")
   final String? pinIcon;
 
-  const Restaurant({
+  Restaurant({
     required this.id,
     required this.name,
     required this.image,

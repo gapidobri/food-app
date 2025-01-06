@@ -26,6 +26,10 @@ dependencies:
   flutter_map_math: ^0.1.7
   flutter_secure_storage: ^9.2.2
   intl: ^0.20.1
+  hive_ce: ^2.8.0+3
+  hive_ce_flutter: ^2.2.0
+  connectivity_plus: ^6.1.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +40,7 @@ dev_dependencies:
   custom_lint: ^0.7.0
   riverpod_lint: ^2.6.3
   json_serializable: ^6.9.0
+  hive_ce_generator: ^1.8.1
 
 flutter:
   uses-material-design: true

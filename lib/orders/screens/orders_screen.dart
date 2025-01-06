@@ -23,21 +23,24 @@ class OrdersScreen extends ConsumerWidget {
               ),
             ),
             Expanded(
-              child: switch (orders) {
-                AsyncData<List<Order>>(value: final orders) =>
-                  ListView.separated(
-                    padding: const EdgeInsets.all(8.0),
-                    itemCount: orders.length,
-                    itemBuilder: (context, i) => OrderCard(order: orders[i]),
-                    separatorBuilder: (context, i) =>
-                        const SizedBox(height: 8.0),
-                  ),
-                AsyncError(:final error) =>
-                  Text('Failed to load orders: $error'),
-                _ => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-              },
+              child: RefreshIndicator(
+                onRefresh: () => ref.refresh(ordersProvider.future),
+                child: switch (orders) {
+                  AsyncData<List<Order>>(value: final orders) =>
+                    ListView.separated(
+                      padding: const EdgeInsets.all(8.0),
+                      itemCount: orders.length,
+                      itemBuilder: (context, i) => OrderCard(order: orders[i]),
+                      separatorBuilder: (context, i) =>
+                          const SizedBox(height: 8.0),
+                    ),
+                  AsyncError(:final error) =>
+                    Text('Failed to load orders: $error'),
+                  _ => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                },
+              ),
             ),
           ],
         ),

@@ -1,9 +1,10 @@
+import 'package:hive_ce/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'meal.g.dart';
 
 @JsonSerializable()
-class Meal {
+class Meal extends HiveObject {
   final String id;
   @JsonKey(name: 'restaurant')
   final String restaurantId;
@@ -11,7 +12,7 @@ class Meal {
   final String image;
   final double price;
 
-  const Meal({
+  Meal({
     required this.id,
     required this.restaurantId,
     required this.name,

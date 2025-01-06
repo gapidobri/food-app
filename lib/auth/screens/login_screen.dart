@@ -10,6 +10,23 @@ class LoginScreen extends ConsumerWidget {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
+    void handleLogin() async {
+      try {
+        await ref.read(authProvider.notifier).login(
+              emailController.text,
+              passwordController.text,
+            );
+      } catch (_) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Invalid credentials'),
+            ),
+          );
+        }
+      }
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -41,10 +58,7 @@ class LoginScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () => ref.read(authProvider.notifier).login(
-                      emailController.text,
-                      passwordController.text,
-                    ),
+                onPressed: handleLogin,
                 child: const Text('Login'),
               ),
             ],

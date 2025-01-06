@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_app/api/api.dart';
+import 'package:food_app/api/pocket_base_provider.dart';
 import 'package:food_app/auth/models/user.dart';
 import 'package:pocketbase/pocketbase.dart';
 

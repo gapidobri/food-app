@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map_math/flutter_geo_math.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +25,7 @@ class RestaurantCard extends ConsumerWidget {
         restaurant.lng,
         location.value.latitude,
         location.value.longitude,
-        "meters",
+        'meters',
       ),
     );
 
@@ -39,7 +40,7 @@ class RestaurantCard extends ConsumerWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
               image: DecorationImage(
-                image: NetworkImage(restaurant.image),
+                image: CachedNetworkImageProvider(restaurant.image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -75,7 +76,10 @@ class RestaurantCard extends ConsumerWidget {
                           size: 16.0,
                         ),
                         const SizedBox(width: 4.0),
-                        Text('${distance.toInt()} m'),
+                        if (distance < 1000)
+                          Text('${distance.toInt()} m')
+                        else
+                          Text('${(distance / 1000).toStringAsFixed(1)} km'),
                       ]
                     ],
                   ),
